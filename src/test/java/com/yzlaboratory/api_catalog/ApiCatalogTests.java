@@ -1,4 +1,4 @@
-package com.example.api_catalog;
+package com.yzlaboratory.api_catalog;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
