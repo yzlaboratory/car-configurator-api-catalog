@@ -1,4 +1,4 @@
-package com.yzlaboratory.api_catalog;
+package com.yzlaboratory.api_catalog.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
