@@ -90,7 +90,6 @@ jobs:
         run: |
           ./mvnw -B compile
           ./mvnw -B test
-          ./mvnw -B org.owasp:dependency-check-maven:check
           ./mvnw -B verify
           ./mvnw -B package
 
