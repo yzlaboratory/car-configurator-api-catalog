@@ -83,6 +83,9 @@ jobs:
           distribution: 'corretto'
           cache: 'maven'
 
+      - name: Grant execute permission for mvnw
+        run: chmod +x ./mvnw
+
       - name: Run All CI Steps (Compile, Test, Scans)
         run: |
           ./mvnw -B compile
