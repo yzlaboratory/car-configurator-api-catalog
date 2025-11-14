@@ -110,8 +110,8 @@ jobs:
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
           IMAGE_TAG: "latest-staging"
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG
 
       - name: Force ECS Staging Pull now
         run: |
@@ -150,9 +150,10 @@ jobs:
           OLD_IMAGE_TAG: "latest-staging"
           NEW_IMAGE_TAG: "latest"
         run: |
-          docker pull $REGISTRY/$REPOSITORY:$OLD_IMAGE_TAG
-          docker tag $REGISTRY/$REPOSITORY:$OLD_IMAGE_TAG $REGISTRY/$REPOSITORY:$NEW_IMAGE_TAG
-          docker push $REGISTRY/$REPOSITORY:$NEW_IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG
+          docker pull $REGISTRY/$REPOSITORY/api-catalog:$OLD_IMAGE_TAG
+          docker tag $REGISTRY/$REPOSITORY/api-catalog:$OLD_IMAGE_TAG $REGISTRY/$REPOSITORY/api-catalog:$NEW_IMAGE_TAG
+          docker push $REGISTRY/$REPOSITORY/api-catalog:$NEW_IMAGE_TAG
 
       - name: Force ECS Pull now
         run: |
