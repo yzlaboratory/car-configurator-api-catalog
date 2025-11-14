@@ -47,7 +47,7 @@ jobs:
       #configure SAST with codeql here, then replace dependency check aswell
       - name: Grant execute permission for mvnw
         run: chmod +x ./mvnw
-        
+
       - name: Compile Code
         run: ./mvnw -B compile
 
@@ -55,7 +55,7 @@ jobs:
         run: ./mvnw -B test
 
       - name: Run Dependency-Check (Vulnerabilities)
-        run: ./mvnw -B org.owasp:dependency-check-maven:check
+        run: ./mvnw -B org.owasp:dependency-check-maven:check -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
       - name: Run Integration Tests
         run: ./mvnw -B verify
