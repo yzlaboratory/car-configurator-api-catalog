@@ -45,7 +45,9 @@ jobs:
           cache: 'maven'
 
       #configure SAST with codeql here, then replace dependency check aswell
-
+      - name: Grant execute permission for mvnw
+        run: chmod +x ./mvnw
+        
       - name: Compile Code
         run: ./mvnw -B compile
 
