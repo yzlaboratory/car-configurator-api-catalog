@@ -71,6 +71,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: staging
+    needs: validate
 
     permissions:
       contents: read
@@ -122,8 +123,6 @@ jobs:
   deploy-production:
     name: 3. Deploy to Production
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-
-    # Hängt vom Erfolg des 'deploy-staging' Jobs ab
     needs: deploy-staging
 
     environment:
