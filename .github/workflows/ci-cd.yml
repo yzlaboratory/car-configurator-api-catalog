@@ -21,7 +21,7 @@ permissions:
 env:
   TF_VERSION: 'latest'
   AWS_REGION: 'eu-central-1'
-  ECR_REPOSITORY: 'car-configurator/microservicerepo'
+  ECR_REPOSITORY: 'car-configurator/api-catalog'
   ECS_SERVICE_STAGING: 'car-configurator-staging-catalog-ecs'
   ECS_SERVICE_PRODUCTION: 'car-configurator-prod-catalog-ecs'
   ECS_CLUSTER_STAGING: 'car-configurator-staging-cluster'
@@ -108,10 +108,9 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
-          IMAGE_TAG: "latest-staging"
         run: |
-          docker build -t $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY:${{ github.sha }} -t $REGISTRY/$REPOSITORY:staging: .
+          docker push --all-tags $REGISTRY/$REPOSITORY
 
       - name: Force ECS Staging Pull now
         run: |
@@ -147,13 +146,10 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ env.ECR_REPOSITORY }}
-          OLD_IMAGE_TAG: "latest-staging"
-          NEW_IMAGE_TAG: "latest"
         run: |
-          docker push $REGISTRY/$REPOSITORY/api-catalog:$IMAGE_TAG
-          docker pull $REGISTRY/$REPOSITORY/api-catalog:$OLD_IMAGE_TAG
-          docker tag $REGISTRY/$REPOSITORY/api-catalog:$OLD_IMAGE_TAG $REGISTRY/$REPOSITORY/api-catalog:$NEW_IMAGE_TAG
-          docker push $REGISTRY/$REPOSITORY/api-catalog:$NEW_IMAGE_TAG
+          docker pull $REGISTRY/$REPOSITORY:staging
+          docker tag $REGISTRY/$REPOSITORY:staging $REGISTRY/$REPOSITORY:latest
+          docker push $REGISTRY/$REPOSITORY:latest
 
       - name: Force ECS Pull now
         run: |
