@@ -123,7 +123,6 @@ jobs:
 
     environment:
       name: production
-      url: https://my-app.com # Die URL Ihrer Produktionsanwendung
 
     runs-on: ubuntu-latest
     permissions:
@@ -151,6 +150,7 @@ jobs:
           docker tag $REGISTRY/$REPOSITORY:staging $REGISTRY/$REPOSITORY:latest
           docker push $REGISTRY/$REPOSITORY:latest
 
-      - name: Force ECS Pull now
-        run: |
-          aws ecs update-service --cluster ${{ env.ECS_CLUSTER_ECS_CLUSTER_PRODUCTION }} --service ${{ env.ECS_SERVICE_PRODUCTION }} --force-new-deployment
+#       Wait until cluster actually exists with commenting this out
+#      - name: Force ECS Pull now
+#        run: |
+#          aws ecs update-service --cluster ${{ env.ECS_CLUSTER_PRODUCTION }} --service ${{ env.ECS_SERVICE_PRODUCTION }} --force-new-deployment
