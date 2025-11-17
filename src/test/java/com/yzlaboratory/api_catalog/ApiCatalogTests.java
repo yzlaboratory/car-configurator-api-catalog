@@ -44,7 +44,7 @@ class ApiCatalogTests {
 		when(dynamoDbService.getColorsByModel("Astral X_2025")).thenReturn(testCatalog);
 
 		// Act & Assert
-		mockMvc.perform(get("/catalog/items"))
+		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))
 				.andExpect(status().isOk()) // Erwarten wir HTTP 200 OK
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE)) // Prüfen des Content-Typs
 				.andExpect(content().string(expectedJson)); // Prüfen des genauen JSON-Strings
@@ -57,7 +57,7 @@ class ApiCatalogTests {
 		when(dynamoDbService.getColorsByModel("Astral X_2025")).thenReturn(new Catalog());
 
 		// Act & Assert
-		mockMvc.perform(get("/catalog/items"))
+		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(content().string(expectedJson)); // Erwarten einen leeren JSON-Array-String

@@ -5,11 +5,12 @@ import com.yzlaboratory.api_catalog.service.DynamoDbService;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/catalog")
+@RequestMapping(value="/catalog")
 public class CatalogController {
 
     private final DynamoDbService service;
@@ -25,7 +26,7 @@ public class CatalogController {
 
 
     @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Catalog items() {
-        return this.service.getColorsByModel("Astral X_2025");
+    public Catalog items(@RequestParam() String model_year ) {
+        return this.service.getColorsByModel(model_year);
     }
 }
