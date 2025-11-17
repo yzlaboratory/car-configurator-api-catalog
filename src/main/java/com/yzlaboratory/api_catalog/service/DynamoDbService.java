@@ -7,6 +7,7 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 
+import java.util.Arrays;
 import java.util.Map;
 
 @Service
@@ -39,13 +40,8 @@ public class DynamoDbService {
         System.out.println(returnedItem.size());
         System.out.println(returnedItem.get("colors").s());
         System.out.println(returnedItem.get("colors").ss());
-        System.out.println(returnedItem.get("Colors").s());
-        System.out.println(returnedItem.get("Colors").s());
-        //???
-        if (returnedItem != null) {
-
-            return returnedItem.get("colors").s();
-        }
-        return null;
+        System.out.println(Arrays.toString(returnedItem.keySet().toArray()));
+        System.out.println(Arrays.toString(returnedItem.values().toArray()));
+        return returnedItem.get("colors").s();
     }
 }
