@@ -29,10 +29,9 @@ public class DynamoDbService {
                 .build();
     }
 
-    // Example method to get an item
-    public String getItems() {
+    public String getColorsByModel(String modelId) {
         Map<String, AttributeValue> keyToGet = Map.of(
-                "id", AttributeValue.builder().s("parts").build()
+                "model_year", AttributeValue.builder().s(modelId).build()
         );
         GetItemRequest request = GetItemRequest.builder()
                 .key(keyToGet)
@@ -41,9 +40,10 @@ public class DynamoDbService {
 
         // This is where the call to DynamoDB happens
         Map<String, AttributeValue> returnedItem = dynamoDbClient.getItem(request).item();
-
+        //???
         if (returnedItem != null) {
-            return returnedItem.get("someAttribute").s();
+
+            return returnedItem.get("colors").s();
         }
         return null;
     }

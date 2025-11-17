@@ -29,6 +29,6 @@ public class StatusController {
     @GetMapping("/items")
     public String items() {
         System.out.println("Items Controller called");
-        return service.getItems();
+        return service.getColorsByModel("Astral X");
     }
 }
