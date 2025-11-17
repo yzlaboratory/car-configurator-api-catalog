@@ -21,7 +21,7 @@ public class DynamoDbService {
         this.dynamoDbEnhancedClient = dynamoDbEnhancedClient;
     }
 
-    public Catalog getColorsByModel(String modelId) {
+    public Catalog getItemsByModel(String modelId) {
         DynamoDbTable<Catalog> mainTable = dynamoDbEnhancedClient.table(
                 this.tableName,
                 TableSchema.fromBean(Catalog.class)
