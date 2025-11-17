@@ -16,17 +16,12 @@ public class DynamoDbService {
     private final String tableName;
 
     // Read the environment variables
-    public DynamoDbService(
-            @Value("${AWS_REGION}") String region,
+    public DynamoDbService(DynamoDbClient dynamoDbClient,
             @Value("${DYNAMODB_TABLE_NAME}") String tableName
     ) {
         this.tableName = tableName;
 
-        // The client is created and automatically
-        // uses the credentials from the ECS Task Role
-        this.dynamoDbClient = DynamoDbClient.builder()
-                .region(Region.of(region))
-                .build();
+        this.dynamoDbClient = dynamoDbClient;
     }
 
     public String getColorsByModel(String modelId) {

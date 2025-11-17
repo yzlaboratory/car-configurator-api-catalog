@@ -35,6 +35,11 @@
 			<artifactId>dynamodb</artifactId>
 			<version>LATEST</version>
 		</dependency>
+		<dependency>
+			<groupId>software.amazon.awssdk</groupId>
+			<artifactId>dynamodb-enhanced</artifactId>
+			<version>LATEST</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
