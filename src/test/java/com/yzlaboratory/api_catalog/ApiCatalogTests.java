@@ -41,7 +41,7 @@ class ApiCatalogTests {
 		testCatalog.setColors(List.of(testColor));
 		String expectedJson = "{\"model_year\":\"Astral X_2025\",\"colors\":[{\"id\":\"C-1\",\"name\":\"Weiss\",\"price\":0,\"hex\":\"#FFFFFF\"}],\"motorizations\":null,\"rims\":null,\"extras\":null}";
 
-		when(dynamoDbService.getColorsByModel("Astral X_2025")).thenReturn(testCatalog);
+		when(dynamoDbService.getItemsByModel("Astral X_2025")).thenReturn(testCatalog);
 
 		// Act & Assert
 		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))
@@ -54,7 +54,7 @@ class ApiCatalogTests {
 	void testGetPartsJson_Empty() throws Exception {
 		// Arrange
 		String expectedJson = "{\"model_year\":null,\"colors\":null,\"motorizations\":null,\"rims\":null,\"extras\":null}";
-		when(dynamoDbService.getColorsByModel("Astral X_2025")).thenReturn(new Catalog());
+		when(dynamoDbService.getItemsByModel("Astral X_2025")).thenReturn(new Catalog());
 
 		// Act & Assert
 		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))

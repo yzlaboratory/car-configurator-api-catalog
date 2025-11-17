@@ -27,6 +27,6 @@ public class CatalogController {
 
     @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
     public Catalog items(@RequestParam() String model_year ) {
-        return this.service.getColorsByModel(model_year);
+        return this.service.getItemsByModel(model_year);
     }
 }
