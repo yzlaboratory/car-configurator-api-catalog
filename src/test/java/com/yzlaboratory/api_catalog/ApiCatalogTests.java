@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(CatalogController.class) // Testet nur diesen Controller
 class ApiCatalogTests {
-	
+
 	@Autowired
 	private MockMvc mockMvc;
 

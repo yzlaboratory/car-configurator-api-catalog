@@ -20,14 +20,12 @@ public class CatalogController {
 
     @GetMapping("/status")
     public String status() {
-        System.out.println("Status Controller called");
         return "<h1>Hello World, its me the Status Controller of your friend api-catalog</h1>";
     }
 
 
     @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
     public Catalog items() {
-        System.out.println("Items Controller called");
         return this.service.getColorsByModel("Astral X_2025");
     }
 }
