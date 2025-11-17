@@ -2,6 +2,7 @@ package com.yzlaboratory.api_catalog.controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import com.yzlaboratory.api_catalog.entity.Catalog;
 import com.yzlaboratory.api_catalog.service.DynamoDbService;
 import jdk.jshell.Snippet;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class StatusController {
     }
 
     @GetMapping("/items")
-    public String items() {
+    public Catalog items() {
         System.out.println("Items Controller called");
         return service.getColorsByModel("Astral X");
     }
