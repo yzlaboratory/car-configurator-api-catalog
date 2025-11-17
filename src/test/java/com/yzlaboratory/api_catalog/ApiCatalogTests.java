@@ -32,7 +32,7 @@ class ApiCatalogTests {
 	void testGetPartsJson_Success() throws Exception {
 		// Arrange
 		Catalog testCatalog = new Catalog();
-		testCatalog.setModel_year("Astral X_2025");
+		testCatalog.setModelId("Astral X_2025");
 		Color testColor = new Color();
 		testColor.setId("C-1");
 		testColor.setName("Weiss");

@@ -8,7 +8,7 @@ import java.util.List;
 @DynamoDbBean
 public class Catalog {
 
-    private String model_year;
+    private String modelId;
     private List<Color> colors;
     private List<Motorization> motorizations;
     private List<Rim> rims;
@@ -18,11 +18,11 @@ public class Catalog {
 
     @DynamoDbPartitionKey
     public String getModel_year() {
-        return model_year;
+        return modelId;
     }
 
-    public void setModel_year(String model_year) {
-        this.model_year = model_year;
+    public void setModelId(String modelId) {
+        this.modelId = modelId;
     }
 
     public List<Color> getColors() {
