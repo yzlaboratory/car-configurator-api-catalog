@@ -10,6 +10,9 @@ public class Catalog {
 
     private String model_year;
     private List<Color> colors;
+    private List<Motorization> motorizations;
+    private List<Rim> rims;
+    private List<Extra> extras;
 
     public Catalog() {}
 
@@ -28,5 +31,29 @@ public class Catalog {
 
     public void setColors(List<Color> colors) {
         this.colors = colors;
+    }
+
+    public List<Motorization> getMotorizations() {
+        return motorizations;
+    }
+
+    public void setMotorizations(List<Motorization> motorizations) {
+        this.motorizations = motorizations;
+    }
+
+    public List<Rim> getRims() {
+        return rims;
+    }
+
+    public void setRims(List<Rim> rims) {
+        this.rims = rims;
+    }
+
+    public List<Extra> getExtras() {
+        return extras;
+    }
+
+    public void setExtras(List<Extra> extras) {
+        this.extras = extras;
     }
 }

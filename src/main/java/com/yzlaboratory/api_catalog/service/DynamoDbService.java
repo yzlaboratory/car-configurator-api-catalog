@@ -6,13 +6,6 @@ import org.springframework.stereotype.Service;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
-import software.amazon.awssdk.regions.Region;
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
-import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
-import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
-
-import java.util.Arrays;
-import java.util.Map;
 
 @Service
 public class DynamoDbService {
@@ -25,7 +18,6 @@ public class DynamoDbService {
             @Value("${DYNAMODB_TABLE_NAME}") String tableName
     ) {
         this.tableName = tableName;
-
         this.dynamoDbEnhancedClient = dynamoDbEnhancedClient;
     }
 
@@ -34,9 +26,6 @@ public class DynamoDbService {
                 this.tableName,
                 TableSchema.fromBean(Catalog.class)
         );
-
-        Catalog retrievedItem = mainTable.getItem(r -> r.key(k -> k.partitionValue(modelId)));
-        System.out.println(retrievedItem.getColors().get(0).getHex());
-        return retrievedItem;
+        return mainTable.getItem(r -> r.key(k -> k.partitionValue(modelId)));
     }
 }
