@@ -1,4 +1,4 @@
-package com.yzlaboratory.api_catalog.config; // (Passen Sie das Paket an)
+package com.yzlaboratory.api_catalog.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
