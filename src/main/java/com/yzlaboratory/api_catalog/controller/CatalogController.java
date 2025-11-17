@@ -2,6 +2,7 @@ package com.yzlaboratory.api_catalog.controller;
 
 import com.yzlaboratory.api_catalog.entity.Catalog;
 import com.yzlaboratory.api_catalog.service.DynamoDbService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,8 @@ public class CatalogController {
         return "<h1>Hello World, its me the Status Controller of your friend api-catalog</h1>";
     }
 
-    @GetMapping("/items")
+
+    @GetMapping(value = "/items", produces = MediaType.APPLICATION_JSON_VALUE)
     public Catalog items() {
         System.out.println("Items Controller called");
         return this.service.getColorsByModel("Astral X_2025");
