@@ -32,9 +32,15 @@ public class DynamoDbService {
                 .key(keyToGet)
                 .tableName(this.tableName)
                 .build();
-
+        System.out.println(this.tableName);
+        System.out.println("Get Item Request: " + request);
         // This is where the call to DynamoDB happens
         Map<String, AttributeValue> returnedItem = dynamoDbClient.getItem(request).item();
+        System.out.println(returnedItem.size());
+        System.out.println(returnedItem.get("colors").s());
+        System.out.println(returnedItem.get("colors").ss());
+        System.out.println(returnedItem.get("Colors").s());
+        System.out.println(returnedItem.get("Colors").s());
         //???
         if (returnedItem != null) {
 
