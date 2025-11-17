@@ -21,8 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(CatalogController.class) // Testet nur diesen Controller
 class ApiCatalogTests {
-
-	// Spring Boot konfiguriert MockMvc automatisch für @WebMvcTest
+	
 	@Autowired
 	private MockMvc mockMvc;
 
