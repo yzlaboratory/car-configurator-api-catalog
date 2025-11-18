@@ -17,7 +17,7 @@ public class Catalog {
     public Catalog() {}
 
     @DynamoDbPartitionKey
-    public String getModel_year() {
+    public String getModelId() {
         return modelId;
     }
 

@@ -39,12 +39,12 @@ class ApiCatalogTests {
 		testColor.setHex("#FFFFFF");
 		testColor.setPrice(BigDecimal.valueOf(0));
 		testCatalog.setColors(List.of(testColor));
-		String expectedJson = "{\"model_year\":\"Astral X_2025\",\"colors\":[{\"id\":\"C-1\",\"name\":\"Weiss\",\"price\":0,\"hex\":\"#FFFFFF\"}],\"motorizations\":null,\"rims\":null,\"extras\":null}";
+		String expectedJson = "{\"modelId\":\"Astral X_2025\",\"colors\":[{\"id\":\"C-1\",\"name\":\"Weiss\",\"price\":0,\"hex\":\"#FFFFFF\"}],\"motorizations\":null,\"rims\":null,\"extras\":null}";
 
 		when(dynamoDbService.getItemsByModel("Astral X_2025")).thenReturn(testCatalog);
 
 		// Act & Assert
-		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))
+		mockMvc.perform(get("/catalog/items?modelId=Astral X_2025"))
 				.andExpect(status().isOk()) // Erwarten wir HTTP 200 OK
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE)) // Prüfen des Content-Typs
 				.andExpect(content().string(expectedJson)); // Prüfen des genauen JSON-Strings
@@ -53,11 +53,11 @@ class ApiCatalogTests {
 	@Test
 	void testGetPartsJson_Empty() throws Exception {
 		// Arrange
-		String expectedJson = "{\"model_year\":null,\"colors\":null,\"motorizations\":null,\"rims\":null,\"extras\":null}";
+		String expectedJson = "{\"modelId\":null,\"colors\":null,\"motorizations\":null,\"rims\":null,\"extras\":null}";
 		when(dynamoDbService.getItemsByModel("Astral X_2025")).thenReturn(new Catalog());
 
 		// Act & Assert
-		mockMvc.perform(get("/catalog/items?model_year=Astral X_2025"))
+		mockMvc.perform(get("/catalog/items?modelId=Astral X_2025"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(content().string(expectedJson)); // Erwarten einen leeren JSON-Array-String
